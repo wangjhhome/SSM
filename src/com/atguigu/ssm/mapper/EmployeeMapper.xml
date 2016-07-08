@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.ssm.mapper.EmployeeMapper">
+	<select id="getAll" resultMap="getAllMap">
+		SELECT emp_id, name, emps_dept_id FROM emps;
+	</select>
+	
+	<resultMap type="com.atguigu.ssm.bean.Employee" id="getAllMap">
+		<id column="emp_id" property="empId"/>
+		<result column="name" property="name"/>
+		<association property="dept" column="emps_dept_id" javaType="com.atguigu.ssm.bean.Department"
+		select="com.atguigu.ssm.mapper.DepartmentMapper.get"/>
+	</resultMap>
+</mapper>
